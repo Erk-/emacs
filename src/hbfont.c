@@ -491,7 +491,75 @@ hbfont_shape (Lisp_Object lgstring, Lisp_Object direction)
   if (!hb_font)
     return make_fixnum (0);
 
-  hb_bool_t success = hb_shape_full (hb_font, hb_buffer, NULL, 0, NULL);
+  hb_feature_t ss01;
+  char ss01_bytes[4] = { 's', 's', '0' ,'1' };
+  hb_tag_t ss01_tag = ss01_bytes[0] +
+                     (ss01_bytes[1] << 8) +
+                     (ss01_bytes[2] << 16) +
+                     (ss01_bytes[3] << 24);
+  ss01.tag = ss01_tag;
+  ss01.value = 1;
+  ss01.start = HB_FEATURE_GLOBAL_START;
+  ss01.end = HB_FEATURE_GLOBAL_END;
+
+  hb_feature_t ss02;
+  char[4] ss02_bytes = { 's', 's', '0' ,'1' };
+  hb_tag_t ss02_tag = ss02_bytes[0] +
+                     (ss02_bytes[1] << 8) +
+                     (ss02_bytes[2] << 16) +
+                     (ss02_bytes[3] << 24);
+  ss02.tag = ss02_tag;
+  ss02.value = 1;
+  ss02.start = HB_FEATURE_GLOBAL_START;
+  ss02.end = HB_FEATURE_GLOBAL_END;
+
+  hb_feature_t ss03;
+  char[4] ss03_bytes = { 's', 's', '0' ,'1' };
+  hb_tag_t ss03_tag = ss03_bytes[0] +
+                     (ss03_bytes[1] << 8) +
+                     (ss03_bytes[2] << 16) +
+                     (ss03_bytes[3] << 24);
+  ss03.tag = ss03_tag;
+  ss03.value = 1;
+  ss03.start = HB_FEATURE_GLOBAL_START;
+  ss03.end = HB_FEATURE_GLOBAL_END;
+
+  hb_feature_t ss04;
+  char[4] ss04_bytes = { 's', 's', '0' ,'1' };
+  hb_tag_t ss04_tag = ss04_bytes[0] +
+                     (ss04_bytes[1] << 8) +
+                     (ss04_bytes[2] << 16) +
+                     (ss04_bytes[3] << 24);
+  ss04.tag = ss04_tag;
+  ss04.value = 1;
+  ss04.start = HB_FEATURE_GLOBAL_START;
+  ss04.end = HB_FEATURE_GLOBAL_END;
+
+  hb_feature_t ss05;
+  char[4] ss05_bytes = { 's', 's', '0' ,'1' };
+  hb_tag_t ss05_tag = ss05_bytes[0] +
+                     (ss05_bytes[1] << 8) +
+                     (ss05_bytes[2] << 16) +
+                     (ss05_bytes[3] << 24);
+  ss05.tag = ss05_tag;
+  ss05.value = 1;
+  ss05.start = HB_FEATURE_GLOBAL_START;
+  ss05.end = HB_FEATURE_GLOBAL_END;
+
+  hb_feature_t ss06;
+  char[4] ss06_bytes = { 's', 's', '0' ,'1' };
+  hb_tag_t ss06_tag = ss06_bytes[0] +
+                     (ss06_bytes[1] << 8) +
+                     (ss06_bytes[2] << 16) +
+                     (ss06_bytes[3] << 24);
+  ss06.tag = ss06_tag;
+  ss06.value = 1;
+  ss06.start = HB_FEATURE_GLOBAL_START;
+  ss06.end = HB_FEATURE_GLOBAL_END;
+
+  hb_feature_t ss[6] = { ss01, ss02, ss03, ss04, ss05, ss06 };
+
+  hb_bool_t success = hb_shape_full (hb_font, hb_buffer, &ss, 6, NULL);
   if (font->driver->end_hb_font)
     font->driver->end_hb_font (font, hb_font);
   if (!success)
